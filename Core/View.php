@@ -2,26 +2,13 @@
 
 namespace Core;
 
-/**
- * View
- *
- * PHP version 5.4
- */
 class View
 {
-
-    /**
-     * Render a view file
-     *
-     * @param string $view  The view file
-     *
-     * @return void
-     */
     public static function render($view, $args = [])
     {
         extract($args, EXTR_SKIP);
 
-        $file = "../App/Views/$view";  // relative to Core directory
+        $file = "../App/Views/$view";
 
         if (is_readable($file)) {
             require $file;

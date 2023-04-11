@@ -19,9 +19,9 @@
     <div class="user__controls">
         <a class="button" href="/users/<?php echo $user['id']; ?>/edit">Edit
         </a>
-        <button class="button" onclick="confirmDelete(<?php echo $user['id']; ?>)">Delete</button>
+        <button class="button" onclick="deleteMethod(<?php echo $user['id']; ?>)">Delete</button>
     </div>
 </div>
-<script src="../../../scripts/confirmDelete.js"></script>
+<script src="/scripts/deleteMethod.js"></script>
 </body>
 </html>

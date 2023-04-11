@@ -25,12 +25,12 @@
                     </a>
                 </td>
                 <td>
-                    <button class="button" onclick="confirmDelete(<?php echo $user['id']; ?>)">Delete</button>
+                    <button class="button" onclick="deleteMethod(<?php echo $user['id']; ?>)">Delete</button>
                 </td>
             </tr>
         <?php } ?>
     </table>
    </div>
-<script src="../../../scripts/confirmDelete.js"></script>
+<script src="/scripts/deleteMethod.js"></script>
 </body>
 </html>

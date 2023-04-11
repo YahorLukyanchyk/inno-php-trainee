@@ -11,7 +11,7 @@
 <body>
 <div class="wrapper">
     <h1>Edit <?php echo $user['name'] ?> user</h1>
-    <form class="user__form" method="post" action="/users/edit">
+    <form class="user__form from-put">
         <input type="text" name="id" value="<?php echo $user['id'] ?>" hidden="">
         <label for="email">Email:</label>
         <input id="email" type="email" name="email" placeholder="Email" value="<?php echo $user['email'] ?>" required>
@@ -30,5 +30,6 @@
         <button class="button" type="submit">Submit changes</button>
     </form>
 </div>
+<script src="/scripts/putMethod.js"></script>
 </body>
 </html>

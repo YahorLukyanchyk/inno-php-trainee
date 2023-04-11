@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Front controller
- *
- * PHP version 5.4
- */
-
-/**
- * Autoloader
- */
 spl_autoload_register(function ($class) {
     $root = dirname(__DIR__);   // get the parent directory
     $file = $root . '/' . str_replace('\\', '/', $class) . '.php';
@@ -17,10 +8,6 @@ spl_autoload_register(function ($class) {
     }
 });
 
-
-/**
- * Routing
- */
 $router = new Core\Router();
 
 // Add the routes

@@ -36,8 +36,14 @@ class Users extends \Core\Controller {
     }
 
     public function editUser(){
-        $user_data = $_POST;
-        User::editUser($user_data);
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            $putData = file_get_contents('php://input');
+
+            $user_data = json_decode("$putData");
+            $user_data = (array)$user_data;
+
+            User::editUser($user_data);
+        }
     }
 
     public function addUser(){
@@ -46,6 +52,8 @@ class Users extends \Core\Controller {
     }
 
     public function deleteUser(){
-        User::deleteUser($this->route_params['id']);
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            User::deleteUser($this->route_params['id']);
+        }
     }
 }
