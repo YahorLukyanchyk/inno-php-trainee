@@ -11,7 +11,7 @@
 <body>
 <div class="wrapper">
     <h1>Create new user</h1>
-    <form class="user__form" method="post" action="/users/create">
+    <form class="user__form" method="post" action="/users">
         <label for="email">Email:</label>
         <input id="email" type="email" name="email" placeholder="Email" required>
         <label for="name">Name:</label>
