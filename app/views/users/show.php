@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../../styles/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <title>User by ID</title>
 </head>
 <body>
@@ -17,11 +17,11 @@
         <p>Status: <span><?php echo $user['status'] ?></span></p>
     </div>
     <div class="user__controls">
-        <a class="button" href="/users/<?php echo $user['id']; ?>/edit">Edit
+        <a class="button" href="/users/edit/<?php echo $user['id']; ?>">Edit
         </a>
         <button class="button" onclick="deleteMethod(<?php echo $user['id']; ?>)">Delete</button>
     </div>
 </div>
-<script src="/scripts/deleteMethod.js"></script>
+<script src="/assets/javascript/deleteMethod.js"></script>
 </body>
 </html>

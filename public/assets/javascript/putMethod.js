@@ -15,7 +15,7 @@ form.addEventListener('submit', (event) => {
 
     data = JSON.stringify(data);
 
-    xhr.open('PUT', `http://localhost/users/${formData.get('id')}`);
+    xhr.open('PUT', `http://localhost/users/update`);
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = () => {
         if (xhr.status === 200) {
