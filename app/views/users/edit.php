@@ -5,13 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../../styles/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <title>Edit user</title>
 </head>
 <body>
 <div class="wrapper">
     <h1>Edit <?php echo $user['name'] ?> user</h1>
-    <form class="user__form" method="post" action="/users/edit">
+    <form class="user__form from-put">
         <input type="text" name="id" value="<?php echo $user['id'] ?>" hidden="">
         <label for="email">Email:</label>
         <input id="email" type="email" name="email" placeholder="Email" value="<?php echo $user['email'] ?>" required>
@@ -30,5 +30,6 @@
         <button class="button" type="submit">Submit changes</button>
     </form>
 </div>
+<script src="/assets/javascript/putMethod.js"></script>
 </body>
 </html>

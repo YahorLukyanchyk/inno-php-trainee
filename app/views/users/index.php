@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../../styles/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <title>All Users</title>
 </head>
 <body>
@@ -21,16 +21,16 @@
             <tr>
                 <td><a href="/users/<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></td>
                 <td>
-                    <a class="button" href="/users/<?php echo $user['id']; ?>/edit">Edit
+                    <a class="button" href="/users/edit/<?php echo $user['id']; ?>">Edit
                     </a>
                 </td>
                 <td>
-                    <button class="button" onclick="confirmDelete(<?php echo $user['id']; ?>)">Delete</button>
+                    <button class="button" onclick="deleteMethod(<?php echo $user['id']; ?>)">Delete</button>
                 </td>
             </tr>
         <?php } ?>
     </table>
    </div>
-<script src="../../../scripts/confirmDelete.js"></script>
+<script src="/assets/javascript/deleteMethod.js"></script>
 </body>
 </html>

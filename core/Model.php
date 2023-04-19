@@ -1,22 +1,11 @@
 <?php
 
-namespace Core;
+namespace core;
 
 use PDO;
 
-/**
- * Base model
- *
- * PHP version 5.4
- */
 abstract class Model
 {
-
-    /**
-     * Get the PDO database connection
-     *
-     * @return mixed
-     */
     protected static function getDB()
     {
         static $db = null;

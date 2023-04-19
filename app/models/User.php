@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace app\models;
 
 use PDO;
-class User extends \Core\Model{
+class User extends \core\Model{
     public static function getAllUsers() {
         try {
             $db = static::getDB();
