@@ -3,9 +3,12 @@
 namespace system;
 
 use \core\Router as Router;
-class App{
 
-    public static function run($url, $method){
+class App
+{
+
+    public static function run($url, $method)
+    {
         $router = new Router();
 
         $router->add('', ['controller' => 'AppController', 'action' => 'index', 'method' => 'GET']);

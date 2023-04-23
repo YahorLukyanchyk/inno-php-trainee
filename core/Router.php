@@ -5,7 +5,6 @@ namespace core;
 class Router
 {
     protected array $routes = [];
-
     protected array $params = [];
 
     public function add($route, $params = [])
@@ -85,6 +84,7 @@ class Router
 
         return '/^' . $route . '$/i';
     }
+
     protected function convertToStudlyCaps($string)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
