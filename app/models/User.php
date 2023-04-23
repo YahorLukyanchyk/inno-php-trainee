@@ -20,7 +20,7 @@ class User extends \core\Model{
         try {
             $db = static::getDB();
             $stmt = $db->query("SELECT id, email, name, status, gender FROM users WHERE id=$id");
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch();
 
             return $result;
         } catch (PDOException $e) {

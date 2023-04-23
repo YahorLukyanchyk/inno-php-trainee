@@ -4,17 +4,13 @@ namespace core;
 
 class Router
 {
-    protected $routes = [];
+    protected array $routes = [];
 
-    protected $params = [];
+    protected array $params = [];
 
     public function add($route, $params = [])
     {
-        $route = preg_replace('/\//', '\\/', $route);
-        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
-        $route = '/^' . $route . '$/i';
-
+        $route = $this->convertRouteToRegularExpression($route);
         $this->routes[$route] = $params;
     }
 
@@ -27,13 +23,11 @@ class Router
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
-                // Get named capture group values
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
                         $params[$key] = $match;
                     }
                 }
-
                 $this->params = $params;
                 return true;
             }
@@ -47,23 +41,30 @@ class Router
         return $this->params;
     }
 
-    public function dispatch($url)
+    public function dispatch($url, $method)
     {
         $url = $this->removeQueryStringVariables($url);
 
         if ($this->match($url)) {
+
+            if ($method !== $this->params['method']) {
+                echo "HTTP Method is incorrect";
+                return;
+            }
+
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
             $controller = "app\controllers\\$controller";
 
             if (class_exists($controller)) {
-                $controller_object = new $controller($this->params);
+                $controllerObject = new $controller($this->params);
 
                 $action = $this->params['action'];
                 $action = $this->convertToCamelCase($action);
 
-                if (is_callable([$controller_object, $action])) {
-                    $controller_object->$action();
+                if (is_callable([$controllerObject, $action])) {
+
+                    $controllerObject->$action();
 
                 } else {
                     echo "Method $action (in controller $controller) not found";
@@ -76,6 +77,14 @@ class Router
         }
     }
 
+    protected function convertRouteToRegularExpression($route)
+    {
+        $route = preg_replace('/\//', '\\/', $route);
+        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+
+        return '/^' . $route . '$/i';
+    }
     protected function convertToStudlyCaps($string)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));

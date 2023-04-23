@@ -19,7 +19,7 @@
         </tr>
         <?php foreach ($users as $user) { ?>
             <tr>
-                <td><a href="/users/<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></td>
+                <td><a href="/user/<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></td>
                 <td>
                     <a class="button" href="/users/edit/<?php echo $user['id']; ?>">Edit
                     </a>

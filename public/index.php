@@ -8,4 +8,4 @@ spl_autoload_register(function ($class) {
     }
 });
 
-\system\App::run($_SERVER['QUERY_STRING']);
+\system\App::run($_SERVER['QUERY_STRING'], $_SERVER['REQUEST_METHOD']);

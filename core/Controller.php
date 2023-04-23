@@ -4,10 +4,10 @@ namespace core;
 
 abstract class Controller
 {
-    protected $route_params = [];
+    protected array $routeParams = [];
 
-    public function __construct($route_params)
+    public function __construct($routeParams)
     {
-        $this->route_params = $route_params;
+        $this->routeParams = $routeParams;
     }
 }

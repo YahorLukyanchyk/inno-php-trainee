@@ -2,8 +2,9 @@
 
 namespace app\controllers;
 
-use core\View;
-use app\models\User;
+use \core\Controller;
+use \core\View;
+use \app\models\User;
 class UserController extends \core\Controller {
 
     public function index(){
@@ -13,20 +14,10 @@ class UserController extends \core\Controller {
         ]);
     }
 
-    public function idHandle(){
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            self::show($this->route_params['id']);
-        } else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-            self::delete($this->route_params['id']);
-        } else {
-            header("location:javascript://history.go(-1)");
-        }
-    }
-
-    public static function show($id){
-        $user = User::getUserById($id);
+    public function show(){
+        $user = User::getUserById($this->routeParams['id']);
         View::render('users/show.php', [
-            'user' => $user[0],
+            'user' => $user,
         ]);
     }
 
@@ -35,35 +26,27 @@ class UserController extends \core\Controller {
     }
 
     public function create(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user_data = $_POST;
-            User::addUser($user_data);
-        } else {
-            header("location:javascript://history.go(-1)");
-        }
+            $userData = $_POST;
+            User::addUser($userData);
     }
 
     public function edit(){
-        $user = User::getUserById($this->route_params['id']);
+        $user = User::getUserById($this->routeParams['id']);
         View::render('users/edit.php', [
-            'user' => $user[0],
+            'user' => $user,
         ]);
     }
 
     public function update(){
-        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = file_get_contents('php://input');
 
-            $user_data = json_decode("$putData");
-            $user_data = (array)$user_data;
+            $userData = json_decode("$putData");
+            $userData = (array)$userData;
 
-            User::editUser($user_data);
-        } else {
-            header("location:javascript://history.go(-1)");
-        }
+            User::editUser($userData);
     }
 
-    public function delete($id){
-        User::deleteUser($id);
+    public function delete(){
+        User::deleteUser($this->routeParams['id']);
     }
 }
