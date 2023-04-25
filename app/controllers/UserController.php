@@ -11,7 +11,8 @@ class UserController extends \core\Controller
 
     public function index()
     {
-        $users = User::getAllUsers();
+        $users = User::all();
+
         View::render('users/index.php', [
             'users' => $users,
         ]);
@@ -19,7 +20,8 @@ class UserController extends \core\Controller
 
     public function show()
     {
-        $user = User::getUserById($this->routeParams['id']);
+        $user = User::get($this->routeParams['id']);
+
         View::render('users/show.php', [
             'user' => $user,
         ]);
@@ -32,13 +34,23 @@ class UserController extends \core\Controller
 
     public function create()
     {
-        $userData = $_POST;
-        User::addUser($userData);
+        $userData = array(
+            'email' => $_POST['email'],
+            'name' => htmlspecialchars($_POST['name']),
+            'gender' => $_POST['gender'],
+            'status' => $_POST['status'],
+        );
+
+        if ((filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) && (preg_match("/^[a-zA-Zа-яёА-ЯЁ]+$/u", $userData['name']))) {
+            User::add($userData);
+        } else {
+            echo "Please check the input data";
+        }
     }
 
     public function edit()
     {
-        $user = User::getUserById($this->routeParams['id']);
+        $user = User::get($this->routeParams['id']);
         View::render('users/edit.php', [
             'user' => $user,
         ]);
@@ -46,14 +58,12 @@ class UserController extends \core\Controller
 
     public function update()
     {
-        $putData = file_get_contents('php://input');
-        $userData = json_decode("$putData");
-        $userData = (array)$userData;
-        User::editUser($userData);
+        $userData = (array)json_decode(file_get_contents('php://input'));
+        User::edit($userData);
     }
 
     public function delete()
     {
-        User::deleteUser($this->routeParams['id']);
+        User::delete($this->routeParams['id']);
     }
 }

@@ -6,7 +6,7 @@ use PDO;
 
 class User extends \core\Model
 {
-    public static function getAllUsers()
+    public static function all()
     {
         try {
             $db = static::getDB();
@@ -20,7 +20,7 @@ class User extends \core\Model
         }
     }
 
-    public static function getUserById($id)
+    public static function get($id)
     {
         try {
             $db = static::getDB();
@@ -35,7 +35,7 @@ class User extends \core\Model
         }
     }
 
-    public static function editUser($data)
+    public static function edit($data)
     {
         try {
             $db = static::getDB();
@@ -61,7 +61,7 @@ class User extends \core\Model
         }
     }
 
-    public static function addUser($data)
+    public static function add($data)
     {
         try {
             $db = static::getDB();
@@ -85,7 +85,7 @@ class User extends \core\Model
         }
     }
 
-    public static function deleteUser($id)
+    public static function delete($id)
     {
         try {
             $db = static::getDB();
