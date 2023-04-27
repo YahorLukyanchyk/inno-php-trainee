@@ -18,9 +18,8 @@ class UserController extends \core\Controller
         ]);
     }
 
-    public function show()
+    public function show($id)
     {
-        $id = $this->routeParams['id'];
         $user = User::get($id);
 
         View::render('users/show.php', [
@@ -35,13 +34,14 @@ class UserController extends \core\Controller
 
     public function create()
     {
-        $userData = (array)json_decode(file_get_contents('php://input'));
+        $userData = (array) json_decode(file_get_contents('php://input'));
 
-        if (!(filter_var($userData['email'], FILTER_VALIDATE_EMAIL))) {
+        if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             http_response_code(400);
             exit("Your email is incorrect");
         }
-        if (!(preg_match("/^[a-zA-Zа-яёА-ЯЁ ]+$/u", $userData['name']))){
+
+        if (!preg_match("/^[a-zA-Zа-яёА-ЯЁ ]+$/u", $userData['name'])) {
             http_response_code(400);
             exit("Your name does not match a valid pattern");
         }
@@ -49,9 +49,8 @@ class UserController extends \core\Controller
         User::add($userData);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $id = $this->routeParams['id'];
         $user = User::get($id);
 
         View::render('users/edit.php', [
@@ -61,13 +60,14 @@ class UserController extends \core\Controller
 
     public function update()
     {
-        $userData = (array)json_decode(file_get_contents('php://input'));
+        $userData = (array) json_decode(file_get_contents('php://input'));
 
-        if (!(filter_var($userData['email'], FILTER_VALIDATE_EMAIL))) {
+        if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             http_response_code(400);
             exit("Your email is incorrect");
         }
-        if (!(preg_match("/^[a-zA-Zа-яёА-ЯЁ ]+$/u", $userData['name']))){
+
+        if (!preg_match("/^[a-zA-Zа-яёА-ЯЁ ]+$/u", $userData['name'])) {
             http_response_code(400);
             exit("Your name does not match a valid pattern");
         }
@@ -75,9 +75,8 @@ class UserController extends \core\Controller
         User::edit($userData);
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $id = $this->routeParams['id'];
         User::delete($id);
     }
 }
