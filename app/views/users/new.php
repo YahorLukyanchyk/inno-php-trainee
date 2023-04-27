@@ -11,7 +11,7 @@
 <body>
 <div class="wrapper">
     <h1>Create new user</h1>
-    <form class="user__form" method="post" action="/users/create">
+    <form class="user__form">
         <label for="email">Email:</label>
         <input id="email" type="email" name="email" placeholder="Email" required>
         <label for="name">Name:</label>
@@ -28,6 +28,8 @@
         </select>
         <button class="button" type="submit">Submit</button>
     </form>
+    <p class="error"></p>
 </div>
+<script src="/assets/javascript/postData.js"></script>
 </body>
 </html>

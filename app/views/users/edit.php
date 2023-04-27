@@ -29,7 +29,8 @@
         </select>
         <button class="button" type="submit">Submit changes</button>
     </form>
+    <p class="error"></p>
 </div>
-<script src="/assets/javascript/putMethod.js"></script>
+<script src="/assets/javascript/putData.js"></script>
 </body>
 </html>

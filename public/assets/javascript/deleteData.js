@@ -1,4 +1,4 @@
-function deleteMethod(id){
+function deleteData(id){
     let confirmation = confirm('Are you sure you want to delete this user?');
     if(confirmation){
         const xhr = new XMLHttpRequest();

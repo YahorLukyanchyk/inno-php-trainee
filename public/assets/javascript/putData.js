@@ -1,4 +1,4 @@
-const form = document.querySelector('.from-put');
+const form = document.querySelector('.user__form');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -19,8 +19,10 @@ form.addEventListener('submit', (event) => {
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.onload = () => {
         if (xhr.status === 200) {
+            console.log("User updated successfully");
             window.location.href = 'http://localhost/users';
         } else {
+            document.querySelector(".error").innerText = xhr.response;
             console.error(xhr.statusText);
         }
     };

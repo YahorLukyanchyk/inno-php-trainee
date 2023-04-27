@@ -43,3 +43,7 @@ form, input, select{
     display: flex;
     gap: 10px;
 }
+
+.error{
+    color: red;
+}
