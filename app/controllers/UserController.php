@@ -18,8 +18,12 @@ class UserController extends \core\Controller
         ]);
     }
 
-    public function show($id)
+    public function show($id = null)
     {
+        if ($id === null) {
+            $id = $this->routeParams['id'];
+        }
+
         $user = User::get($id);
 
         View::render('users/show.php', [
@@ -49,8 +53,12 @@ class UserController extends \core\Controller
         User::add($userData);
     }
 
-    public function edit($id)
+    public function edit($id = null)
     {
+        if ($id === null) {
+            $id = $this->routeParams['id'];
+        }
+
         $user = User::get($id);
 
         View::render('users/edit.php', [
@@ -75,8 +83,12 @@ class UserController extends \core\Controller
         User::edit($userData);
     }
 
-    public function delete($id)
+    public function delete($id = null)
     {
+        if ($id === null) {
+            $id = $this->routeParams['id'];
+        }
+
         User::delete($id);
     }
 }
