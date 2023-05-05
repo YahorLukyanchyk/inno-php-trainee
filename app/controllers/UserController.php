@@ -13,8 +13,9 @@ class UserController extends \core\Controller
     {
         $users = User::all();
 
-        View::render('users/index.php', [
+        View::render('users/index.php', 'main.php', [
             'users' => $users,
+            'page' => ['title' => 'All users'],
         ]);
     }
 
@@ -26,19 +27,22 @@ class UserController extends \core\Controller
 
         $user = User::get($id);
 
-        View::render('users/show.php', [
+        View::render('users/show.php', 'main.php', [
             'user' => $user,
+            'page' => ['title' => 'User by ID'],
         ]);
     }
 
     public function new()
     {
-        View::render('users/new.php');
+        View::render('users/new.php', 'main.php', [
+            'page' => ['title' => 'Add user'],
+        ]);
     }
 
     public function create()
     {
-        $userData = (array) json_decode(file_get_contents('php://input'));
+        $userData = (array)json_decode(file_get_contents('php://input'));
 
         if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             http_response_code(400);
@@ -61,14 +65,15 @@ class UserController extends \core\Controller
 
         $user = User::get($id);
 
-        View::render('users/edit.php', [
+        View::render('users/edit.php', 'main.php', [
             'user' => $user,
+            'page' => ['title' => 'Edit user'],
         ]);
     }
 
     public function update()
     {
-        $userData = (array) json_decode(file_get_contents('php://input'));
+        $userData = (array)json_decode(file_get_contents('php://input'));
 
         if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             http_response_code(400);
