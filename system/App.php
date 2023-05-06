@@ -21,6 +21,5 @@ class App
         $router->add('users/{id:\d+}', ['controller' => 'UserController', 'action' => 'delete', 'method' => 'DELETE']);
 
         $router->dispatch($url, $method);
-
     }
 }
