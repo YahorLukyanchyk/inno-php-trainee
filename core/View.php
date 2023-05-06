@@ -9,7 +9,7 @@ class View
         extract($args, EXTR_SKIP);
 
         $file = "../app/views/$view";
-        $layout = "../app/views/layouts/$template";
+        $layout = "../app/views/templates/$template";
 
         if (!is_readable($file))
         {
@@ -18,7 +18,7 @@ class View
 
         if (!is_readable($layout))
         {
-            echo "Layout $layout does not exist";
+            echo "Template $template does not exist";
         }
 
         ob_start();

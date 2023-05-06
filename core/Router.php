@@ -63,7 +63,7 @@ class Router
 
                 if (is_callable([$controllerObject, $action])) {
 
-                    $controllerObject->$action();
+                    $controllerObject->$action($id = $this->params['id'] ?? null);
 
                 } else {
                     echo "Method $action (in controller $controller) not found";
