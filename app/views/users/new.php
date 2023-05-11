@@ -23,7 +23,7 @@
         <option value="active">Active user</option>
         <option value="inactive">Inactive user</option>
     </select>
-    <button class="button bg-green-500" type="submit">Submit</button>
+    <button class="button" type="submit">Submit</button>
 </form>
 <p class="error"></p>
 <script src="/assets/javascript/postData.js"></script>

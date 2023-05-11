@@ -3,50 +3,37 @@
 @tailwind utilities;
 
 body{
-    height: 100vh;
-    font-size: 36px;
+    @apply h-screen text-2xl md:text-4xl;
 }
 
 .wrapper{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @apply h-full w-auto flex flex-col justify-center items-center;
 }
 
 .button, button{
-    padding: 5px 15px;
-    background-color: limegreen;
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 10px;
-    transition: 0.3s;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    font-family: "Bitstream Charter";
+    @apply py-2.5 px-5 bg-lime-300 no-underline rounded-md uppercase transition-all duration-300 border-0 md:text-4xl cursor-pointer;
 }
 
-form, input, select{
-    font-size: 24px;
+input, select{
+    @apply md:text-3xl border border-black border-solid p-1.5 rounded-lg;
 }
 
 .button:hover{
-    background-color: #4ab44a;
+    @apply bg-lime-400;
 }
 
 .user__form{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    @apply flex flex-col gap-2.5 w-full p-5 md:w-auto;
 }
 
 .user__controls{
-    @apply flex gap-4;
+    @apply mt-4 flex gap-4;
 }
 
 .error{
-    color: red;
+    @apply text-red-600 text-center px-2;
+}
+
+.label{
+    @apply font-bold
 }

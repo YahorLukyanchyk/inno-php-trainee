@@ -10,7 +10,7 @@
     <title><?php print_r($page['title']) ?></title>
 </head>
 <body>
-    <div class="w-full h-full flex flex-col justify-center items-center">
+    <div class="wrapper">
         <?php echo $content ?>
     </div>
 </body>

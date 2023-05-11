@@ -25,11 +25,11 @@
         <option value="female">Female</option>
     </select>
     <label for="status">Status:</label>
-    <select class="border border-black border-solid p-1.5 rounded-lg" id="status" name="status">
+    <select id="status" name="status">
         <option value="active">Active user</option>
         <option value="inactive">Inactive user</option>
     </select>
-    <button class="button bg-green-500" type="submit">Submit changes</button>
+    <button class="button" type="submit">Submit changes</button>
 </form>
 <p class="error"></p>
 <script src="/assets/javascript/putData.js"></script>
