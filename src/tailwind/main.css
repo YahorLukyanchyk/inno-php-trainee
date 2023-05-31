@@ -37,3 +37,7 @@ input, select{
 .label{
     @apply font-bold
 }
+
+input[type="checkbox"]{
+    @apply w-5 h-5;
+}

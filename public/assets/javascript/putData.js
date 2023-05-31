@@ -20,7 +20,7 @@ form.addEventListener('submit', (event) => {
     xhr.onload = () => {
         if (xhr.status === 200) {
             console.log("User updated successfully");
-            window.location.href = 'http://localhost/users';
+            window.location.href = 'http://localhost/users?page=0';
         } else {
             document.querySelector(".error").innerText = xhr.response;
             console.error(xhr.statusText);

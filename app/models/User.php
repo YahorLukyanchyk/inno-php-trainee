@@ -53,7 +53,7 @@ class User extends \core\Model
             $status = $data['status'];
             $id = $data['id'];
             $stmt->execute();
-            header('Location: http://localhost/users');
+            header('Location: http://localhost/users?page=0');
 
             exit();
         } catch (PDOException $e) {
@@ -77,7 +77,7 @@ class User extends \core\Model
             $gender = $data['gender'];
             $status = $data['status'];
             $stmt->execute();
-            header('Location: http://localhost/users');
+            header('Location: http://localhost/users?page=0');
 
             exit();
         } catch (PDOException $e) {
@@ -94,7 +94,29 @@ class User extends \core\Model
             $stmt->bindParam(':id', $id);
 
             $stmt->execute();
-            header('Location: http://localhost/users');
+            header('Location: http://localhost/users?page=0');
+
+            exit();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteSelected($usersIdToRemove)
+    {
+        try {
+            $db = static::getDB();
+            foreach ($usersIdToRemove as $key => $id)
+                {
+                    $sql = 'DELETE FROM users WHERE id = :id';
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindParam(':id', $id);
+
+                    $stmt->execute();
+                }
+
+            header('Location: http://localhost/users?page=0');
 
             exit();
 

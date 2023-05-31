@@ -6,7 +6,7 @@ function deleteData(id){
         xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
         xhr.onload = () => {
             if (xhr.status === 200) {
-                window.location.href = `http://localhost/users`;
+                window.location.href = `http://localhost/users?page=0`;
             } else {
                 console.error(xhr.statusText);
             }
