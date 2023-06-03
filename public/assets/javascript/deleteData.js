@@ -1,4 +1,5 @@
-function deleteData(id){
+function deleteData(event, id){
+    event.preventDefault();
     let confirmation = confirm('Are you sure you want to delete this user?');
     if(confirmation){
         const xhr = new XMLHttpRequest();

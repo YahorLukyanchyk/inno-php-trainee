@@ -4,18 +4,26 @@ namespace app\controllers;
 
 use \core\Controller;
 use \core\View;
+use \core\Twig as Twig;
 use \app\models\User;
 
-class UserController extends \core\Controller
+class UserController extends Controller
 {
 
     public function index()
     {
         $users = User::all();
 
-        View::render('users/index.php', 'main.php', [
+        $page = $_GET['page'];
+        $usersPerPage = 3;
+        $pagesCount = ceil(count($users) / $usersPerPage);
+
+        echo Twig::load()->render("@users/index.php", [
+            'title' => 'All users',
             'users' => $users,
-            'page' => ['title' => 'All users'],
+            'page' => $page,
+            'usersPerPage' => $usersPerPage,
+            'pagesCount' => $pagesCount,
         ]);
     }
 
@@ -23,16 +31,16 @@ class UserController extends \core\Controller
     {
         $user = User::get($id);
 
-        View::render('users/show.php', 'main.php', [
+        echo Twig::load()->render("@users/show.php", [
+            'title' => 'User by ID',
             'user' => $user,
-            'page' => ['title' => 'User by ID'],
         ]);
     }
 
     public function new()
     {
-        View::render('users/new.php', 'main.php', [
-            'page' => ['title' => 'Add user'],
+        echo Twig::load()->render("@users/new.php", [
+            'title' => 'Add user',
         ]);
     }
 
@@ -57,9 +65,9 @@ class UserController extends \core\Controller
     {
         $user = User::get($id);
 
-        View::render('users/edit.php', 'main.php', [
+        echo Twig::load()->render("@users/edit.php", [
+            'title' => 'Edit user',
             'user' => $user,
-            'page' => ['title' => 'Edit user'],
         ]);
     }
 

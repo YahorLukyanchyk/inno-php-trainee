@@ -1,8 +1,8 @@
-const form = document.querySelector('.user__form');
-form.addEventListener('submit', (event) => {
+const formPost = document.querySelector('.form__post');
+formPost.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const formData = new FormData(form);
+    const formData = new FormData(formPost);
     const xhr = new XMLHttpRequest();
 
     let data = {

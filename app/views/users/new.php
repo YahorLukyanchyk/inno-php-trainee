@@ -1,5 +1,8 @@
+
+{% include 'header.php' %}
+
 <h1 class="font-bold p-4">Create new user</h1>
-<form class="user__form">
+<form class="user__form form__post">
     <label for="email">Email:</label>
     <input id="email"
            class="border border-black border-solid p-1.5 rounded-lg"
@@ -26,4 +29,5 @@
     <button class="button" type="submit">Submit</button>
 </form>
 <p class="error"></p>
-<script src="/assets/javascript/postData.js"></script>
+
+{% include 'footer.php' %}

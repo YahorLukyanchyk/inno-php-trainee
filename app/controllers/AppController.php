@@ -3,13 +3,14 @@
 namespace app\controllers;
 
 use \core\View;
+use \core\Twig as Twig;
 
 class AppController extends \core\Controller
 {
     public function index()
     {
-        View::render('app/index.php', 'main.php', [
-            'page' => ['title' => 'Home'],
+        echo Twig::load()->render("@app/index.php", [
+            'title' => 'Home',
         ]);
     }
 }

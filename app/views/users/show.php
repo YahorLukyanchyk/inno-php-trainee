@@ -1,15 +1,19 @@
+
+{% include 'header.php' %}
+
 <h1 class="font-bold p-4">
-    <span><?php echo "(" . $user['id'] . ") " ?></span>
-    <?php echo $user['name'] ?>
+    <span>{{ user.id }}</span>
+    {{ user.name }}
 </h1>
 <div class="user__stats p-4 mx-2">
-    <p><span class="label">Email: </span><span><?php echo $user['email'] ?></span></p>
-    <p><span class="label">Gender: </span><span><?php echo $user['gender'] ?></span></p>
-    <p><span class="label">Status: </span><span><?php echo $user['status'] ?></span></p>
+    <p><span class="label">Email: </span><span>{{ user.email }}</span></p>
+    <p><span class="label">Gender: </span><span>{{ user.gender }}</span></p>
+    <p><span class="label">Status: </span><span>{{ user.status }}</span></p>
 </div>
 <div class="user__controls">
-    <a class="button" href="/users/edit/<?php echo $user['id']; ?>">Edit
+    <a class="button" href="/users/edit/{{ user.id }}">Edit
     </a>
-    <button class="button" onclick="deleteData(<?php echo $user['id']; ?>)">Delete</button>
+    <button class="button" onclick="deleteData(event, {{ user.id }})">Delete</button>
 </div>
-<script src="/assets/javascript/deleteData.js"></script>
+
+{% include 'footer.php' %}
