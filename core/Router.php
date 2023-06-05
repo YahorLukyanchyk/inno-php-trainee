@@ -18,10 +18,10 @@ class Router
         return $this->routes;
     }
 
-    public function match($url)
+    public function match($url, $method)
     {
         foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $url, $matches)) {
+            if (preg_match($route, $url, $matches) && $params['method'] == $method) {
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
                         $params[$key] = $match;
@@ -44,7 +44,7 @@ class Router
     {
         $url = $this->removeQueryStringVariables($url);
 
-        if ($this->match($url)) {
+        if ($this->match($url, $method)) {
 
             if ($method !== $this->params['method']) {
                 echo "HTTP Method is incorrect";

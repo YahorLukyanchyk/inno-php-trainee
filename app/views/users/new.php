@@ -26,6 +26,7 @@
         <option value="active">Active user</option>
         <option value="inactive">Inactive user</option>
     </select>
+    <input type="hidden" name="dbType" value="<?php echo $_SESSION['dbType'] ?>">
     <button class="button" type="submit">Submit</button>
 </form>
 <p class="error"></p>

@@ -15,7 +15,7 @@ class UserController extends Controller
         $users = User::all();
 
         $page = $_GET['page'];
-        $usersPerPage = 3;
+        $usersPerPage = $_GET['per_page'];
         $pagesCount = ceil(count($users) / $usersPerPage);
 
         echo Twig::load()->render("@users/index.php", [
@@ -39,6 +39,8 @@ class UserController extends Controller
 
     public function new()
     {
+        var_dump($_SESSION);
+
         echo Twig::load()->render("@users/new.php", [
             'title' => 'Add user',
         ]);
