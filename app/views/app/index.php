@@ -6,7 +6,7 @@
     <a class="button" href="/users/new">Add user</a>
 </div>
 <div>
-    <select name="" id="selectBox" onchange="test()">
+    <select name="" id="selectBox">
         <option value="local" selected>Локальная база данных</option>
         <option value="rest">gorest REST API</option>
     </select>

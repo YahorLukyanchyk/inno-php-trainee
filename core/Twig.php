@@ -2,7 +2,6 @@
 
 namespace core;
 
-require_once __DIR__ . "/../vendor/autoload.php";
 class Twig
 {
     public static function load()

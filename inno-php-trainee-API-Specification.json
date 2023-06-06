@@ -1,0 +1,257 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "inno-php-trainee",
+    "description": "Simple MVC project with both local and remote databases.",
+    "version": "1.0.0"
+  },
+  "host": "localhost",
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "localhost"
+        ],
+        "summary": "get index page",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/db": {
+      "post": {
+        "tags": [
+          "localhost"
+        ],
+        "summary": "select needed database",
+        "parameters": [
+          {
+            "name": "dbType",
+            "description": "type of database",
+            "required": false,
+            "in": "body",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get all users",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "user ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users/new": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get create user page",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users/create": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "create a new user",
+        "parameters": [
+          {
+            "name": "name",
+            "description": "user name",
+            "required": true,
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "description": "user email",
+            "required": true,
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "description": "user gender",
+            "required": true,
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "description": "user status",
+            "required": true,
+            "in": "formData",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Incorrect username or email"
+          }
+        }
+      }
+    },
+    "/users/edit/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get user edit page with specific ID",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "user ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/users/update": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "update user data",
+        "parameters": [
+          {
+            "name": "name",
+            "description": "user name",
+            "required": false,
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "description": "user email",
+            "required": false,
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "description": "user gender",
+            "required": false,
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "description": "user status",
+            "required": false,
+            "in": "formData",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Incorrect username or email"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "delete user with such ID",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "user ID",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "No user with such ID"
+          }
+        }
+      }
+    },
+    "/users/delete-selected": {
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "delete multiple users with such IDs",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "user ID",
+            "required": true,
+            "in": "body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "No user with such ID"
+          }
+        }
+      }
+    }
+  }
+}

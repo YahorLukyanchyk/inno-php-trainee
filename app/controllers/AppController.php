@@ -15,7 +15,7 @@ class AppController extends \core\Controller
         ]);
     }
 
-    public function changeBdType()
+    public function changeDbType()
     {
         if(isset($_POST['dbType'])) {
             $bdType = $_POST['dbType'];
