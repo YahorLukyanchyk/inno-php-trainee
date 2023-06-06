@@ -8,7 +8,6 @@ class User extends \core\Model
 {
     public static function all()
     {
-        var_dump($_SESSION);
         if ($_SESSION["dbType"] == 'remote') {
             $url = 'https://gorest.co.in/public/v2/users';
             $curl = curl_init($url);
@@ -173,16 +172,35 @@ class User extends \core\Model
     public static function deleteSelected($usersIdToRemove)
     {
         if ($_SESSION["dbType"] == 'remote') {
+
             foreach ($usersIdToRemove as $key => $id) {
-                $url = "https://gorest.co.in/public/v2/users/$id";
-                $curl = curl_init($url);
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-                curl_setopt($curl, CURLOPT_HTTPHEADER, [
+                ${'curl' . $key} = curl_init();
+
+                curl_setopt(${'curl' . $key}, CURLOPT_URL, "https://gorest.co.in/public/v2/users/$id");
+                curl_setopt(${'curl' . $key}, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt(${'curl' . $key}, CURLOPT_CUSTOMREQUEST, "DELETE");
+                curl_setopt(${'curl' . $key}, CURLOPT_HTTPHEADER, [
                     'Authorization: Bearer fdb2e0d938496f83d1d6580506ad831133697ca5bb27f312734bbcd07fc6742f'
                 ]);
-                curl_close($curl);
             }
+
+            $mh = curl_multi_init();
+
+            foreach ($usersIdToRemove as $key => $id) {
+                curl_multi_add_handle($mh, ${'curl' . $key});
+            }
+
+            do {
+                $status = curl_multi_exec($mh, $active);
+                if ($active) {
+                    curl_multi_select($mh);
+                }
+            } while ($active && $status == CURLM_OK);
+
+            foreach ($usersIdToRemove as $key => $id) {
+                curl_multi_remove_handle($mh, ${'curl' . $key});
+            }
+            curl_multi_close($mh);
 
             header('Location: http://localhost/users?page=1&per_page=3');
         } else {
