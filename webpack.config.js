@@ -6,6 +6,17 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "public/assets/javascript"),
         clean: true,
-        filename: "script.js"
+        filename: "script.min.js"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            }
+        ]
     }
 }
