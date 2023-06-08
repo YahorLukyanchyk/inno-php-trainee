@@ -20,7 +20,6 @@ class App
         $router->add('users/edit/{id:\d+}', ['controller' => 'UserController', 'action' => 'edit', 'method' => 'GET']);
         $router->add('users/update', ['controller' => 'UserController', 'action' => 'update', 'method' => 'PUT']);
         $router->add('users/{id:\d+}', ['controller' => 'UserController', 'action' => 'delete', 'method' => 'DELETE']);
-        $router->add('users/delete-selected', ['controller' => 'UserController', 'action' => 'deleteSelected', 'method' => 'POST']);
 
         $router->dispatch($url, $method);
     }

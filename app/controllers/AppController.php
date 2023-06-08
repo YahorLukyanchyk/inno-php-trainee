@@ -10,6 +10,8 @@ class AppController extends \core\Controller
 {
     public function index()
     {
+        var_dump($_SESSION['dbType']);
+
         echo Twig::load()->render("@app/index.php", [
             'title' => 'Home',
         ]);

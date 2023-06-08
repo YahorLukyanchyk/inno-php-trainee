@@ -1,5 +1,6 @@
 const path = require("path");
 const glob = require("glob");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     entry: {'js': glob.sync('./src/javascript/*.js')},
@@ -15,8 +16,18 @@ module.exports = {
                 use: [
                     'style-loader',
                     'css-loader'
-                ]
+                ],
             }
         ]
-    }
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    keep_fnames: true,
+                },
+            }),
+        ],
+    },
 }

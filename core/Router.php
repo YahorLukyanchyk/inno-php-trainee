@@ -18,10 +18,10 @@ class Router
         return $this->routes;
     }
 
-    public function match($url, $method)
+    public function match($url)
     {
         foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $url, $matches) && $params['method'] == $method) {
+            if (preg_match($route, $url, $matches)) {
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
                         $params[$key] = $match;

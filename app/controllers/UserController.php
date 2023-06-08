@@ -38,8 +38,6 @@ class UserController extends Controller
 
     public function new()
     {
-        var_dump($_SESSION);
-
         echo Twig::load()->render("@users/new.php", [
             'title' => 'Add user',
         ]);
@@ -92,23 +90,5 @@ class UserController extends Controller
     public function delete($id)
     {
         User::delete($id);
-    }
-
-    public function deleteSelected()
-    {
-        if (array_key_exists('selected', $_POST))
-        {
-            $selectedUsers = $_POST;
-            $selectedUsers = (array_shift($selectedUsers));
-
-            foreach ($selectedUsers as $id => $value)
-            {
-                $usersIdToRemove[] = $id;
-            }
-
-            User::deleteSelected($usersIdToRemove);
-        } else {
-            echo "No users selected";
-        }
     }
 }

@@ -88,7 +88,8 @@ class User extends \core\Model
                 $status = $data['status'];
                 $id = $data['id'];
                 $stmt->execute();
-                header('Location: http://localhost/users?page=1&per_page=3');
+
+                echo "User updated successfully!";
 
                 exit();
             } catch (PDOException $e) {
@@ -128,7 +129,8 @@ class User extends \core\Model
                 $gender = $data['gender'];
                 $status = $data['status'];
                 $stmt->execute();
-                header('Location: http://localhost/users?page=1&per_page=3');
+
+                echo 'User created successfully!';
 
                 exit();
             } catch (PDOException $e) {
@@ -159,62 +161,8 @@ class User extends \core\Model
                 $stmt->bindParam(':id', $id);
 
                 $stmt->execute();
-                header('Location: http://localhost/users?page=1&per_page=3');
 
-                exit();
-
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }
-        }
-    }
-
-    public static function deleteSelected($usersIdToRemove)
-    {
-        if ($_SESSION["dbType"] == 'remote') {
-
-            foreach ($usersIdToRemove as $key => $id) {
-                ${'curl' . $key} = curl_init();
-
-                curl_setopt(${'curl' . $key}, CURLOPT_URL, "https://gorest.co.in/public/v2/users/$id");
-                curl_setopt(${'curl' . $key}, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt(${'curl' . $key}, CURLOPT_CUSTOMREQUEST, "DELETE");
-                curl_setopt(${'curl' . $key}, CURLOPT_HTTPHEADER, [
-                    'Authorization: Bearer fdb2e0d938496f83d1d6580506ad831133697ca5bb27f312734bbcd07fc6742f'
-                ]);
-            }
-
-            $mh = curl_multi_init();
-
-            foreach ($usersIdToRemove as $key => $id) {
-                curl_multi_add_handle($mh, ${'curl' . $key});
-            }
-
-            do {
-                $status = curl_multi_exec($mh, $active);
-                if ($active) {
-                    curl_multi_select($mh);
-                }
-            } while ($active && $status == CURLM_OK);
-
-            foreach ($usersIdToRemove as $key => $id) {
-                curl_multi_remove_handle($mh, ${'curl' . $key});
-            }
-            curl_multi_close($mh);
-
-            header('Location: http://localhost/users?page=1&per_page=3');
-        } else {
-            try {
-                $db = static::getDB();
-                foreach ($usersIdToRemove as $key => $id) {
-                    $sql = 'DELETE FROM users WHERE id = :id';
-                    $stmt = $db->prepare($sql);
-                    $stmt->bindParam(':id', $id);
-
-                    $stmt->execute();
-                }
-
-                header('Location: http://localhost/users?page=1&per_page=3');
+                echo "User removed successfully!";
 
                 exit();
 
