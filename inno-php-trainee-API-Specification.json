@@ -239,35 +239,6 @@
           }
         }
       }
-    },
-    "/users/delete-selected": {
-      "post": {
-        "tags": [
-          "users"
-        ],
-        "summary": "delete multiple users with such IDs",
-        "consumes" : ["application/x-www-form-urlencoded"],
-        "parameters": [
-          {
-            "name": "selected[id]",
-            "description": "user ID",
-            "required": true,
-            "in": "formData",
-            "type" : "array",
-            "items" : {
-
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "400": {
-            "description": "No user with such ID"
-          }
-        }
-      }
     }
   }
 }

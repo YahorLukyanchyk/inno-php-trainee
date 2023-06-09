@@ -21,7 +21,7 @@ class AppController extends \core\Controller
     {
         if(isset($_POST['dbType'])) {
             $bdType = $_POST['dbType'];
-            echo "Received variable: " . $bdType;
+            echo "Current database: " . $bdType;
             Db::setType($bdType);
         }
     }

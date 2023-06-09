@@ -1,36 +1,30 @@
-const formPost = document.querySelector('.form__post');
+$('.form__post').submit(function (event) {
+    event.preventDefault();
 
-if (formPost) {
-    formPost.addEventListener('submit', (event) => {
-        event.preventDefault();
+    const formData = new FormData(this);
 
-        const formData = new FormData(formPost);
-        const xhr = new XMLHttpRequest();
+    let data = {
+        id: formData.get('id'),
+        email: formData.get('email'),
+        name: formData.get('name'),
+        gender: formData.get('gender'),
+        status: formData.get('status'),
+    };
 
-        let data = {
-            id: formData.get('id'),
-            email: formData.get('email'),
-            name: formData.get('name'),
-            gender: formData.get('gender'),
-            status: formData.get('status'),
+    data = JSON.stringify(data);
+
+    $.ajax({
+        url: 'http://localhost/users/create',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: data,
+        success: function (response) {
+            console.log('User updated successfully');
+            window.location.href = 'http://localhost/users?page=1&per_page=3';
+        },
+        error: function (xhr, textStatus, error) {
+            $('.error').text(xhr.responseText);
+            console.error(xhr.statusText);
         }
-
-        data = JSON.stringify(data);
-
-        xhr.open('POST', `http://localhost/users/create`);
-        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                console.log("User updated successfully");
-                window.location.href = 'http://localhost/users?page=1&per_page=3';
-            } else {
-                document.querySelector(".error").innerText = xhr.response;
-                console.error(xhr.statusText);
-            }
-        };
-
-        xhr.send(data);
     });
-} else {
-    console.log('No POST from yet');
-}
+});
