@@ -7,7 +7,7 @@ use \core\View;
 use \core\Twig as Twig;
 use \app\models\User;
 
-class UserController extends Controller
+class UserController
 {
     public function index()
     {
@@ -17,7 +17,7 @@ class UserController extends Controller
         $usersPerPage = $_GET['per_page'];
         $pagesCount = ceil(count($users) / $usersPerPage);
 
-        echo Twig::load()->render("@users/index.php", [
+        echo Twig::load()->render('@users/index.php', [
             'title' => 'All users',
             'users' => $users,
             'page' => $page,
@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $user = User::get($id);
 
-        echo Twig::load()->render("@users/show.php", [
+        echo Twig::load()->render('@users/show.php', [
             'title' => 'User by ID',
             'user' => $user,
         ]);
@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function new()
     {
-        echo Twig::load()->render("@users/new.php", [
+        echo Twig::load()->render('@users/new.php', [
             'title' => 'Add user',
         ]);
     }
@@ -49,12 +49,12 @@ class UserController extends Controller
 
         if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             http_response_code(400);
-            exit("Your email is incorrect");
+            exit('Your email is incorrect');
         }
 
         if (!preg_match("/^[a-zA-Zа-яёА-ЯЁ ]+$/u", $userData['name'])) {
             http_response_code(400);
-            exit("Your name does not match a valid pattern");
+            exit('Your name does not match a valid pattern');
         }
 
         User::add($userData);
@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $user = User::get($id);
 
-        echo Twig::load()->render("@users/edit.php", [
+        echo Twig::load()->render('@users/edit.php', [
             'title' => 'Edit user',
             'user' => $user,
         ]);
@@ -76,12 +76,12 @@ class UserController extends Controller
 
         if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
             http_response_code(400);
-            exit("Your email is incorrect");
+            exit('Your email is incorrect');
         }
 
         if (!preg_match("/^[a-zA-Zа-яёА-ЯЁ ]+$/u", $userData['name'])) {
             http_response_code(400);
-            exit("Your name does not match a valid pattern");
+            exit('Your name does not match a valid pattern');
         }
 
         User::edit($userData);
@@ -90,5 +90,7 @@ class UserController extends Controller
     public function delete($id)
     {
         User::delete($id);
+
+        echo 'User removed successfully!';
     }
 }

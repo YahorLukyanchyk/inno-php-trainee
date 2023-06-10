@@ -9,6 +9,7 @@ $('.form__delete').submit(function (event) {
                 type: 'DELETE',
                 contentType: 'application/json; charset=utf-8',
                 success: function () {
+                    console.log('User removed successfully');
                     window.location.href = `http://localhost/users?page=1&per_page=3`;
                 },
                 error: function (error) {

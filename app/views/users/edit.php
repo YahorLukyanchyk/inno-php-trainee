@@ -24,13 +24,13 @@
            required>
     <label for="gender">Gender:</label>
     <select class="border border-black border-solid p-1.5 rounded-lg" id="gender" name="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
+        <option value="male" {% if user.gender == 'male' %} selected {% endif %}>Male</option>
+        <option value="female" {% if user.gender == 'female' %} selected {% endif %}>Female</option>
     </select>
     <label for="status">Status:</label>
     <select id="status" name="status">
-        <option value="active">Active user</option>
-        <option value="inactive">Inactive user</option>
+        <option value="active" {% if user.status == 'active' %} selected {% endif %}>Active user</option>
+        <option value="inactive" {% if user.status == 'inactive' %} selected {% endif %}>Inactive user</option>
     </select>
     <button class="button" type="submit">Submit changes</button>
 </form>

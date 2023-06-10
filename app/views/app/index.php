@@ -7,8 +7,8 @@
 </div>
 <div>
     <select name="" id="selectBox">
-        <option value="local" selected>Локальная база данных</option>
-        <option value="rest">gorest REST API</option>
+        <option value="local" {% if dbType == 'local' %} selected {% endif %}>Локальная база данных</option>
+        <option value="rest" {% if dbType == 'remote' %} selected {% endif %}>gorest REST API</option>
     </select>
 </div>
 

@@ -19,9 +19,7 @@
             "description": "Successful operation"
           }
         }
-      }
-    },
-    "/db": {
+      },
       "post": {
         "tags": [
           "localhost"
@@ -178,6 +176,7 @@
         ],
         "summary": "update user data",
         "consumes" : ["application/json"],
+        "produces": ["text/html; charset=utf-8"],
         "parameters": [
           {
             "name": "user",

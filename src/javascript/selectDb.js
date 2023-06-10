@@ -4,7 +4,7 @@ $('#selectBox').change(function () {
     switch (dbType) {
         case 'rest':
             $.ajax({
-                url: 'db',
+                url: '',
                 type: 'POST',
                 data: {dbType: 'remote'},
                 success: function (response) {
@@ -14,7 +14,7 @@ $('#selectBox').change(function () {
             break;
         default:
             $.ajax({
-                url: 'db',
+                url: '',
                 type: 'POST',
                 data: {dbType: 'local'},
                 success: function (response) {

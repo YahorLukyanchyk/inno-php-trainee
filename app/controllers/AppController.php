@@ -6,20 +6,19 @@ use \core\View;
 use \core\Twig as Twig;
 use \app\models\Db;
 
-class AppController extends \core\Controller
+class AppController
 {
     public function index()
     {
-        var_dump($_SESSION['dbType']);
-
         echo Twig::load()->render("@app/index.php", [
             'title' => 'Home',
+            'dbType' => $_SESSION['dbType'],
         ]);
     }
 
     public function changeDbType()
     {
-        if(isset($_POST['dbType'])) {
+        if(isset($_SESSION['dbType'])) {
             $bdType = $_POST['dbType'];
             echo "Current database: " . $bdType;
             Db::setType($bdType);

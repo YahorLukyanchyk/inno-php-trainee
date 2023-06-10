@@ -8,7 +8,7 @@ class User extends \core\Model
 {
     public static function all()
     {
-        if ($_SESSION["dbType"] == 'remote') {
+        if ($_SESSION['dbType'] == 'remote') {
             $url = 'https://gorest.co.in/public/v2/users';
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -32,7 +32,7 @@ class User extends \core\Model
 
     public static function get($id)
     {
-        if ($_SESSION["dbType"] == 'remote') {
+        if ($_SESSION['dbType'] == 'remote') {
             $url = "https://gorest.co.in/public/v2/users/$id";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -57,7 +57,7 @@ class User extends \core\Model
 
     public static function edit($data)
     {
-        if ($_SESSION["dbType"] == 'remote') {
+        if ($_SESSION['dbType'] == 'remote') {
             $id = $data['id'];
             $url = "https://gorest.co.in/public/v2/users/$id";
             $curl = curl_init($url);
@@ -89,9 +89,7 @@ class User extends \core\Model
                 $id = $data['id'];
                 $stmt->execute();
 
-                echo "User updated successfully!";
-
-                exit();
+                return 'User updated successfully!';
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
@@ -100,7 +98,7 @@ class User extends \core\Model
 
     public static function add($data)
     {
-        if ($_SESSION["dbType"] == 'remote') {
+        if ($_SESSION['dbType'] == 'remote') {
             $url = "https://gorest.co.in/public/v2/users";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_POST, 1);
@@ -130,9 +128,7 @@ class User extends \core\Model
                 $status = $data['status'];
                 $stmt->execute();
 
-                echo 'User created successfully!';
-
-                exit();
+                return 'User created successfully!';
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
@@ -141,7 +137,7 @@ class User extends \core\Model
 
     public static function delete($id)
     {
-        if ($_SESSION["dbType"] == 'remote') {
+        if ($_SESSION['dbType'] == 'remote') {
             $url = "https://gorest.co.in/public/v2/users/$id";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -162,10 +158,7 @@ class User extends \core\Model
 
                 $stmt->execute();
 
-                echo "User removed successfully!";
-
-                exit();
-
+                return 'User removed successfully!';
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }

@@ -12,7 +12,7 @@ class App
         $router = new Router();
 
         $router->add('', ['controller' => 'AppController', 'action' => 'index', 'method' => 'GET']);
-        $router->add('db', ['controller' => 'AppController', 'action' => 'changeDbType', 'method' => 'POST']);
+        $router->add('', ['controller' => 'AppController', 'action' => 'changeDbType', 'method' => 'POST']);
         $router->add('users', ['controller' => 'UserController', 'action' => 'index', 'method' => 'GET']);
         $router->add('user/{id:\d+}', ['controller' => 'UserController', 'action' => 'show', 'method' => 'GET']);
         $router->add('users/new', ['controller' => 'UserController', 'action' => 'new', 'method' => 'GET']);

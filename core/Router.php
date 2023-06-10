@@ -10,7 +10,13 @@ class Router
     public function add($route, $params = [])
     {
         $route = $this->convertRouteToRegularExpression($route);
-        $this->routes[$route] = $params;
+        $method = $params['method'] ?? 'GET';
+
+        if (!isset($this->routes[$method])) {
+            $this->routes[$method] = [];
+        }
+
+        $this->routes[$method][$route] = $params;
     }
 
     public function getRoutes()
@@ -18,17 +24,19 @@ class Router
         return $this->routes;
     }
 
-    public function match($url)
+    public function match($url, $method)
     {
-        foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $url, $matches)) {
-                foreach ($matches as $key => $match) {
-                    if (is_string($key)) {
-                        $params[$key] = $match;
+        if (isset($this->routes[$method])) {
+            foreach ($this->routes[$method] as $route => $params) {
+                if (preg_match($route, $url, $matches)) {
+                    foreach ($matches as $key => $match) {
+                        if (is_string($key)) {
+                            $params[$key] = $match;
+                        }
                     }
+                    $this->params = $params;
+                    return true;
                 }
-                $this->params = $params;
-                return true;
             }
         }
 
