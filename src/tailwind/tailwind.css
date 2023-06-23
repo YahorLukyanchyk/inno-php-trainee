@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    @apply h-screen text-2xl md:text-4xl;
+}
+
+.wrapper{
+    @apply h-full w-auto flex flex-col justify-center items-center;
+}
+
+.button, button{
+    @apply py-2.5 px-5 bg-lime-300 no-underline rounded-md uppercase transition-all duration-300 border-0 md:text-4xl cursor-pointer;
+}
+
+input, select{
+    @apply md:text-3xl border border-black border-solid p-1.5 rounded-lg;
+}
+
+.button:hover{
+    @apply bg-lime-400;
+}
+
+.user__form{
+    @apply flex flex-col gap-2.5 w-full p-5 md:w-auto;
+}
+
+.user__controls{
+    @apply mt-4 flex gap-4;
+}
+
+.error{
+    @apply text-red-600 text-center px-2;
+}
+
+.label{
+    @apply font-bold
+}
+
+input[type="checkbox"]{
+    @apply w-5 h-5;
+}

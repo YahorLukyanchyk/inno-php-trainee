@@ -1,5 +1,8 @@
+
+{% include 'header.php' %}
+
 <h1 class="font-bold p-4">Create new user</h1>
-<form class="user__form">
+<form class="user__form form__post">
     <label for="email">Email:</label>
     <input id="email"
            class="border border-black border-solid p-1.5 rounded-lg"
@@ -23,7 +26,9 @@
         <option value="active">Active user</option>
         <option value="inactive">Inactive user</option>
     </select>
-    <button class="button bg-green-500" type="submit">Submit</button>
+    <input type="hidden" name="dbType" value="<?php echo $_SESSION['dbType'] ?>">
+    <button class="button" type="submit">Submit</button>
 </form>
 <p class="error"></p>
-<script src="/assets/javascript/postData.js"></script>
+
+{% include 'footer.php' %}

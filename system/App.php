@@ -11,14 +11,15 @@ class App
     {
         $router = new Router();
 
-        $router->add('', ['controller' => 'AppController', 'action' => 'index', 'method' => 'GET']);
-        $router->add('users', ['controller' => 'UserController', 'action' => 'index', 'method' => 'GET']);
-        $router->add('user/{id:\d+}', ['controller' => 'UserController', 'action' => 'show', 'method' => 'GET']);
-        $router->add('users/new', ['controller' => 'UserController', 'action' => 'new', 'method' => 'GET']);
-        $router->add('users/create', ['controller' => 'UserController', 'action' => 'create', 'method' => 'POST']);
-        $router->add('users/edit/{id:\d+}', ['controller' => 'UserController', 'action' => 'edit', 'method' => 'GET']);
-        $router->add('users/update', ['controller' => 'UserController', 'action' => 'update', 'method' => 'PUT']);
-        $router->add('users/{id:\d+}', ['controller' => 'UserController', 'action' => 'delete', 'method' => 'DELETE']);
+        $router->add('/', ['controller' => 'AppController', 'action' => 'index', 'method' => 'GET']);
+        $router->add('/', ['controller' => 'AppController', 'action' => 'changeDbType', 'method' => 'POST']);
+        $router->add('/users/page/{page:\d+}', ['controller' => 'UserController', 'action' => 'index', 'method' => 'GET']);
+        $router->add('/user/{id:\d+}', ['controller' => 'UserController', 'action' => 'show', 'method' => 'GET']);
+        $router->add('/users/new', ['controller' => 'UserController', 'action' => 'new', 'method' => 'GET']);
+        $router->add('/users/create', ['controller' => 'UserController', 'action' => 'create', 'method' => 'POST']);
+        $router->add('/users/edit/{id:\d+}', ['controller' => 'UserController', 'action' => 'edit', 'method' => 'GET']);
+        $router->add('/users/update', ['controller' => 'UserController', 'action' => 'update', 'method' => 'PUT']);
+        $router->add('/users/{id:\d+}', ['controller' => 'UserController', 'action' => 'delete', 'method' => 'DELETE']);
 
         $router->dispatch($url, $method);
     }
