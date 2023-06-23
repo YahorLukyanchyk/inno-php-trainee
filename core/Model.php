@@ -11,9 +11,9 @@ abstract class Model
         static $db = null;
 
         if ($db === null) {
-            $host = 'localhost';
+            $host = 'db';
             $dbname = 'db_inn';
-            $username = 'root';
+            $username = 'el';
             $password = '2750894ZXC';
     
             try {

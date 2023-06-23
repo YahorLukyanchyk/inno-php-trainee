@@ -14,13 +14,13 @@ $('.form__post').submit(function (event) {
     data = JSON.stringify(data);
 
     $.ajax({
-        url: 'http://localhost/users/create',
+        url: 'http://localhost:8080/users/create',
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: data,
         success: function (response) {
             console.log('User updated successfully');
-            window.location.href = 'http://localhost/users?page=1&per_page=3';
+            window.location.href = 'http://localhost:8080/users/page/1';
         },
         error: function (xhr, textStatus, error) {
             $('.error').text(xhr.responseText);

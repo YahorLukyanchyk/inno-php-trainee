@@ -7,20 +7,19 @@ use \core\View;
 use \core\Twig as Twig;
 use \app\models\User;
 
-class UserController
+class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
 
-        $page = $_GET['page'];
-        $usersPerPage = $_GET['per_page'];
+        $usersPerPage = 3;
         $pagesCount = ceil(count($users) / $usersPerPage);
 
         echo Twig::load()->render('@users/index.php', [
             'title' => 'All users',
             'users' => $users,
-            'page' => $page,
+            'page' => $this->routeParams['page'],
             'usersPerPage' => $usersPerPage,
             'pagesCount' => $pagesCount,
         ]);

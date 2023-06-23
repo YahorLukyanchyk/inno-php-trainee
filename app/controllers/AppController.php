@@ -10,6 +10,11 @@ class AppController
 {
     public function index()
     {
+        if (!array_key_exists('dbType', $_SESSION)) {
+            $bdType = 'local';
+            Db::setType($bdType);
+        }
+
         echo Twig::load()->render("@app/index.php", [
             'title' => 'Home',
             'dbType' => $_SESSION['dbType'],
@@ -18,10 +23,8 @@ class AppController
 
     public function changeDbType()
     {
-        if(isset($_SESSION['dbType'])) {
-            $bdType = $_POST['dbType'];
-            echo "Current database: " . $bdType;
-            Db::setType($bdType);
-        }
+        $bdType = $_POST['dbType'];
+        echo "Current database: " . $bdType;
+        Db::setType($bdType);
     }
 }

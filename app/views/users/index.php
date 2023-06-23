@@ -30,7 +30,7 @@
     <label class="cursor-pointer bg-red-700 text-white p-2 rounded-md" for="submit-form" tabindex="0">Delete selected</label>
     <div class="text-center">
         {% for i in 1..pagesCount %}
-        <a href="?page={{ i }}&per_page={{ usersPerPage }}" style="color: {% if i == page %} red {% endif %}">{{ i }}</a>
+        <a href="/users/page/{{ i }}" style="color: {% if i == page %} red {% endif %}">{{ i }}</a>
         {% endfor %}
     </div>
 </div>
